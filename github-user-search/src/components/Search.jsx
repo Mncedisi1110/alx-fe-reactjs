@@ -11,7 +11,17 @@ function Search() {
     };
     return (
         <div className="search-container">
-            <form className="search-form">
+            <form onSubmit={
+
+                (e) => {
+                    e.preventDefault();
+                    setLoading(true);
+                    // Simulate a search operation
+                    setTimeout(() => {
+                        setLoading(false);
+                        alert(`Loading...`);
+                    }, 2000);
+                }}>
                 <input
                  type="text"
                 placeholder="Enter GitHub username"
