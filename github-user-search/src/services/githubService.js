@@ -1,17 +1,18 @@
-import.meta.env.VITE_GITHUB_API_KEY;
 import axios from 'axios';
+import { useEffect } from 'react';
+const fetchUserData =  (username) => {
+    useEffect(() => {
+        axios.get(`https://api.github.com/users/${username}`)
+            .then(response => {
+                console.log(response.data);
+                return response.data;
+            })
+            .catch(error => {
+                console.error("Looks like we cant find the user", error);
+                return null;
+            });
+    }, [username]);
+};
+export default { fetchUserData };
 
-const BASE_URL = 'https://api.github.com';
 
- function fetchUserData(){
-    return axios.create({
-        get: /users/,
-        baseURL: BASE_URL,
-        headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_GITHUB_API_KEY}`,
-            Accept: 'application/vnd.github+json',
-        },
-    });
-}
-
-export { fetchUserData };
