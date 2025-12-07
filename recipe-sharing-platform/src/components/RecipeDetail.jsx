@@ -1,47 +1,47 @@
-import { useState , useEffect } from "react";
+import { useState , useEffect , useParams } from "react";
 
-const RecipeDetail = ({ match }) => {
+const RecipeDetail = () => {
+    const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
-    const recipeId = match.params.id;
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
                 const response = await fetch("./data.json");
                 const data = await response.json();
-                const foundRecipe = data.recipes.find(r => r.id === parseInt(recipeId));
-                setRecipe(foundRecipe);
+                const foundRecipe = data.recipes.find((r) => r.id === parseInt(id));
+                if (foundRecipe) {
+                    setRecipe(foundRecipe);
+                } else {
+                    setError("Recipe not found");
+                }
             } catch (error) {
-                console.error("Error fetching recipe:", error);
+                setError("Error fetching recipe");
+
             } finally {
                 setLoading(false);
-            }
+            } 
         };
         fetchRecipe();
-    } , [recipeId]);
+    } , [id]);
 
     if (loading) {
         return <div>Loading...</div>;
+
     }
-    if (!recipe) {
-        return <div>Recipe not found</div>;
+    if (error) {
+        return <div>{error}</div>;
     }
+
     return (
         <div className="container mx-auto p-4 bg-gray-400">
             <h1>{recipe.summary}</h1>
             <p>{recipe.image}</p>
-            <h2>Ingredients</h2>
-            <ul>
-                {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-                ))}
-            </ul>
-            <h2>Instructions</h2>
-            <ol>
-                {recipe.instructions.map((instruction, index) => (
-                    <li key={index}>{instruction}</li>
-                ))}
-            </ol>
+            <p> {recipe.ingredients}</p>
+            <p>{recipe.instructions}</p>
+
         </div>
     );
 }
