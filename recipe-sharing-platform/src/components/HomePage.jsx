@@ -23,9 +23,9 @@ const HomePage = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div class="flex  justify-center min-h-screen bg-gray-500 sm:text-xl md:text-lg xs:text-sm">
+        <div className="flex  justify-center min-h-screen bg-gray-500 sm:text-xl md:text-lg xs:text-sm">
             <h1>Recipe Sharing Platform</h1>
-            <ul class ="mt-2 p-6 rounded-lg shadow-md hover:shadow-gray-300 ,rounded-10 text-gray-400  ">
+            <ul className ="mt-2 p-6 rounded-lg shadow-md hover:shadow-gray-300 ,rounded-10 text-gray-400  ">
                 {recipes.map((recipe) => (
                     <li key={recipe.id}>
                         <h2>{recipe.title}</h2>
