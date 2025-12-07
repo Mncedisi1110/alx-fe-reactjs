@@ -37,7 +37,7 @@ const RecipeDetail = () => {
 
     return (
         <div className="container mx-auto p-4 bg-gray-400">
-            <h1>{recipe.summary}</h1>
+            <h1 className= "text-gray-200 shadow-gray-100 font-serif">{recipe.summary}</h1>
             <p>{recipe.image}</p>
             <p> {recipe.ingredients}</p>
             <p>{recipe.instructions}</p>
