@@ -19,7 +19,7 @@ function RegistrationForm() {
                 Enter Your Username:
                 <input 
                 type ="text"
-                value = {username}
+                value={username}
                 onChange = {setUsername((e)=>{
                     e.target.value
                 })}
@@ -31,7 +31,7 @@ function RegistrationForm() {
                 Enter Your Email:
                 <input 
                 type ="email"
-                value = {email}
+                value={email}
                 onChange = {setEmail((e)=>{
                     e.target.value
                 })}
@@ -44,7 +44,7 @@ function RegistrationForm() {
                 Enter Your Password:
                 <input 
                 type = "password"
-                value = {password}
+                value={password}
                 onChange = {setPassword((e)=>{
                     e.target.value
                 })}
