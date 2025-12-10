@@ -1,17 +1,16 @@
 import { useState } from "react";
 
 function RegistrationForm() {
-    const [formData, setFormData] = useState({
-        firstname: "",
-        lastname:"",
-        email: "",
-        password: "",
-    });
+    const [firstname, setFirstName] = useState("")
+        
+       const [lastname, setLastName] = useState("")
+       const [username, setUsername] = useState("")
+       const [email, setEmail] = useState("")
+       const [password, setPassword] = useState("")
+       
 
-    const handleChange = (e) => {
-        const { name, value} = e.target;
-        setFormData(values => ({...values, [name]:value}))
-    }
+
+    
      const handleSubmit= (e) =>{
         e,preventDefault();
      }
@@ -21,9 +20,10 @@ function RegistrationForm() {
                 Enter Your FirstName:
                 <input 
                 type ="text"
-                name = "firstname"
-                value ={formData.firstname}
-                onChange ={handleChange}
+                value ={firstname}
+                onChange ={setFirstName((e)=>{
+                    e.target.value
+                })}
                 required
                 />
             </label>
@@ -33,21 +33,35 @@ function RegistrationForm() {
                 Enter Your LastName:
                 <input 
                 type ="text"
-                name = "lastname"
-                value= {formData.lastname}
-                onChange = {handleChange}
+                value= {lastname}
+                onChange = {setLastName((e)=>{
+                    e.target.value
+                })}
                 required
                 />
             </label>
             <br/>
 
             <label>
+                Enter Your Username:
+                <input 
+                type ="text"
+                value = {username}
+                onChange = {setUsername((e)=>{
+                    e.target.value
+                })}
+                required
+                />
+            </label>
+
+            <label>
                 Enter Your Email:
                 <input 
                 type ="email"
-                name = "email"
-                value = {formData.email}
-                onChange = {handleChange}
+                value = {email}
+                onChange = {setEmail((e)=>{
+                    e.target.value
+                })}
                 required
                 />
             </label>
@@ -57,9 +71,10 @@ function RegistrationForm() {
                 Enter Your Password:
                 <input 
                 type = "password"
-                name = "password"
-                value = {formData.password}
-                onChange = {handleChange}
+                value = {password}
+                onChange = {setPassword((e)=>{
+                    e.target.value
+                })}
                 required
                 />
             </label>
