@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 function RegistrationForm() {
-    const [firstname, setFirstName] = useState("")
-        
-       const [lastname, setLastName] = useState("")
        const [username, setUsername] = useState("")
        const [email, setEmail] = useState("")
        const [password, setPassword] = useState("")
@@ -16,31 +13,7 @@ function RegistrationForm() {
      }
      return (
         <form onSubmit ={handleSubmit}>
-            <label>
-                Enter Your FirstName:
-                <input 
-                type ="text"
-                value ={firstname}
-                onChange ={setFirstName((e)=>{
-                    e.target.value
-                })}
-                required
-                />
-            </label>
-            <br/>
-
-            <label>
-                Enter Your LastName:
-                <input 
-                type ="text"
-                value= {lastname}
-                onChange = {setLastName((e)=>{
-                    e.target.value
-                })}
-                required
-                />
-            </label>
-            <br/>
+            
 
             <label>
                 Enter Your Username:
