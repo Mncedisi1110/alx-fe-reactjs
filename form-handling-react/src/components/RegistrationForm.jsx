@@ -42,7 +42,7 @@ const Form = () => {
                 />
             </label>
             <br/>
-            <p>{errors.Username}</p>
+            <p>{errors.username}</p>
             <br/>
 
             <label>Email:
@@ -53,7 +53,7 @@ const Form = () => {
                 />
                 </label>
                 <br/>
-            <p>{errors.Email}</p>
+            <p>{errors.email}</p>
             <br/>
 
             <label>Password:
@@ -64,7 +64,7 @@ const Form = () => {
                 />
             </label>
             <br></br>
-            <p>{errors.Password}</p>
+            <p>{errors.password}</p>
             <br/>
             <button type="submit">Submit</button>
 
