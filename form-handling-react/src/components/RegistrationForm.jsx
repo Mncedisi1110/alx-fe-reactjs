@@ -1,17 +1,13 @@
 import { useState } from "react";
 
 const Form = () => {
-    const [formData, setFormData] = useState({
-        Username: "",
-        Email: "",
-        Password:""
-    });
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value});
-    }
+    
+       
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form Data Submitted:", formData);
@@ -20,16 +16,18 @@ const Form = () => {
 
     const validateForm = () => {
         const Errors = {};
-        if (!formData.Username) {
-            Errors.Username = "Username is required";
+        if (!username) {
+            Errors.username = "Username is required";
         }
-        if (!formData.Email) {
-            Errors.Email = "Email is required";
+        if (!email) {
+            Errors.email = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(formData.Email)) {
-            Errors.Email = "Email address is invalid";
+            Errors.email = "Email address is invalid";
         }
-        if (!formData.Password) {
-            Errors.Password = "Password is required";
+        if (!password) {
+            Errors.password = "Password is required";
+        }else if (password.length < 6) {
+            Errors.password = "Password must be at least 6 characters";
         }
         return Errors;
     }
@@ -39,9 +37,8 @@ const Form = () => {
             <label>Username:
                 <input
                 type="text"
-                name="Username"
-                value ={formData.Username}
-                onChange = {handleChange}
+                value ={username}
+                onChange = {(e) => setUsername(e.target.value)}
                 />
             </label>
             <br/>
@@ -51,9 +48,8 @@ const Form = () => {
             <label>Email:
                 <input
                 type = "email"
-                name = "Email"
-                value = {formData.Email}
-                onChange = {handleChange}
+                value = {email}
+                onChange = {(e) => setEmail(e.target.value)}
                 />
                 </label>
                 <br/>
@@ -63,9 +59,8 @@ const Form = () => {
             <label>Password:
                 <input
                 type = "password"
-                name = "Password"
-                value = {formData.Password}
-                onChange = {handleChange}
+                value = {password}
+                onChange = {(e) => setPassword(e.target.value)}
                 />
             </label>
             <br></br>
