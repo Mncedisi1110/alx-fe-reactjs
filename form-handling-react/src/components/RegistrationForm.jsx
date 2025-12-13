@@ -1,10 +1,15 @@
 import { useState } from "react";
 
-const Form = () => {
+const RegistrationForm = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const formData = {
+        Username: username,
+        Email: email,
+        Password: password
+    };
 
     
        
@@ -16,15 +21,15 @@ const Form = () => {
 
     const validateForm = () => {
         const Errors = {};
-        if (!username) {
+        if (!formData.Username) {
             Errors.username = "Username is required";
         }
-        if (!email) {
+        if (!formData.Email) {
             Errors.email = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(formData.Email)) {
             Errors.email = "Email address is invalid";
         }
-        if (!password) {
+        if (!formData.Password) {
             Errors.password = "Password is required";
         }else if (password.length < 6) {
             Errors.password = "Password must be at least 6 characters";
@@ -42,7 +47,7 @@ const Form = () => {
                 />
             </label>
             <br/>
-            <p>{errors.username}</p>
+            <p>{errors.Username}</p>
             <br/>
 
             <label>Email:
@@ -53,7 +58,7 @@ const Form = () => {
                 />
                 </label>
                 <br/>
-            <p>{errors.email}</p>
+            <p>{errors.Email}</p>
             <br/>
 
             <label>Password:
@@ -63,8 +68,8 @@ const Form = () => {
                 onChange = {(e) => setPassword(e.target.value)}
                 />
             </label>
-            <br></br>
-            <p>{errors.password}</p>
+            <br/>
+            <p>{errors.Password}</p>
             <br/>
             <button type="submit">Submit</button>
 
@@ -72,4 +77,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default RegistrationForm;
