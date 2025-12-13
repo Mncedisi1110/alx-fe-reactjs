@@ -1,80 +1,80 @@
 import { useState } from "react";
 
-function RegistrationForm() {
-       const [username, setUsername] = useState("")
-       const [email, setEmail] = useState("")
-       const [password, setPassword] = useState("")
-       const [errors, setErrors] = useState({})
+const Form = () => {
+    const [formData, setFormData] = useState({
+        Username: "",
+        Email: "",
+        Password:""
+    });
+    const [errors, setErrors] = useState({});
 
-       function validateForm() {
-        const newErrors = {};
-
-        if (!username === "") {
-            newErrors.username = "Username is required.";
-        }
-        if (!email.includes("@")) {
-            newErrors.email = "Invalid email address.";
-        }
-        if (!password || password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters long.";
-        }
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-       }
-
-
-
-     const handleSubmit= (e) =>{
-        e,preventDefault();
-     }
-     return (
-        <form onSubmit ={handleSubmit}>
-            
-
-            <label>
-                Enter Your Username:
-                <input
-                type ="text"
-                value={username}
-                errors={validateForm.username}
-                onChange = {setUsername((e)=>{
-                    e.target.value
-                })}
-
-                required
-                />
-            </label>
-
-            <label>
-                Enter Your Email:
-                <input 
-                type ="email"
-                value={email}
-                errors={validateForm.email}
-                onChange = {setEmail((e)=>{
-                    e.target.value
-                })}
-                required
-                />
-            </label>
-            <br/>
-
-            <label>
-                Enter Your Password:
-                <input 
-                type = "password"
-                value={password}
-                errors={validateForm.password}
-                onChange = {setPassword((e)=>{
-                    e.target.value
-                })}
-                required
-                />
-            </label>
-            <br/>
-            <button type="submit">Register</button>
-        </form>
-     )
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value});
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form Data Submitted:", formData);
+        setErrors(validateForm());
     }
 
-    export default RegistrationForm;
+    const validateForm = () => {
+        const Errors = {};
+        if (!formData.Username) {
+            Errors.Username = "Username is required";
+        }
+        if (!formData.Email) {
+            Errors.Email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.Email)) {
+            Errors.Email = "Email address is invalid";
+        }
+        if (!formData.Password) {
+            Errors.Password = "Password is required";
+        }
+        return Errors;
+    }
+
+    return (
+        <form onSubmit = {handleSubmit}>
+            <label>Username:
+                <input
+                type="text"
+                name="Username"
+                value ={formData.Username}
+                onChange = {handleChange}
+                />
+            </label>
+            <br/>
+            <p>{errors.Username}</p>
+            <br/>
+
+            <label>Email:
+                <input
+                type = "email"
+                name = "Email"
+                value = {formData.Email}
+                onChange = {handleChange}
+                />
+                </label>
+                <br/>
+            <p>{errors.Email}</p>
+            <br/>
+
+            <label>Password:
+                <input
+                type = "password"
+                name = "Password"
+                value = {formData.Password}
+                onChange = {handleChange}
+                />
+            </label>
+            <br></br>
+            <p>{errors.Password}</p>
+            <br/>
+            <button type="submit">Submit</button>
+
+        </form>
+    )
+}
+
+export default Form;
