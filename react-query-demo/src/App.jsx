@@ -9,9 +9,15 @@ import './App.css'
 
   function App() {
     return (
+      <>
       <QueryClientProvider client={queryClient}>
         <PostsComponent />
       </QueryClientProvider>
+      <button onClick={() => {
+        window.location.reload();
+      }}>Reload</button>
+      </>
+    
     );
   }
 
