@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery,QueryClient} from '@tanstack/react-query';
 
 const fetchPosts = async() => {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -27,6 +27,21 @@ function PostsComponent() {
                     </li>
                 ))}
             </ul>
+            <button onClick={() => {
+                const queryClient = new QueryClient({
+                    defaultOptions: {
+                        queries: {
+                            refetchOnWindowFocus: false,
+                            keepPreviousData: true,
+                            staleTime: 5 * 60 * 1000, // 5 minutes
+                            cacheTime: 10 * 60 * 1000, // 10 minutes
+                        },
+                    },
+                });
+                queryClient.invalidateQueries('posts');
+            }}>ReFetch</button>
+
+        
         </div>
     );
 }
