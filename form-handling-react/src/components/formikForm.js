@@ -12,11 +12,11 @@ const RegistrationForm = () =>{
          }
         }
         validationSchema={Yup.object({
-            username:Yup.string()
+            username:Yup.string().required("This field is required.")
             .max(10, "Must be 10 characters or less.").required("This field is required."),
-            email:Yup.string()
-            .email("Invalid email address.").required("This field is required."),
-            password:Yup.string()
+            email:Yup.string().required("This field is required.")
+            .email("Invalid email address."),
+            password:Yup.string().required("This field is required.")
             .min(4,"Must be between 4 and 12 characters.")
             .max(12,"Must be between 4 and 12 characters."),
 
